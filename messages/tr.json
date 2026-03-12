@@ -15,10 +15,15 @@
   },
   "matches": {
     "title": "Bugünün Maçları",
+    "upcomingMatches": "Yaklaşan Maçlar",
     "noMatches": "Bugün için maç planlanmamış",
+    "noUpcomingMatches": "Yaklaşan maç yok",
     "subscribeToUnlock": "Tüm maçları görmek için abone olun",
     "kickoff": "Başlangıç",
-    "vs": "vs"
+    "vs": "vs",
+    "showing": "{total} maçtan {count} tanesi gösteriliyor",
+    "loadMore": "Daha Fazla Yükle",
+    "page": "Sayfa"
   },
   "matchDetail": {
     "matchPreview": "Maç Önizleme",

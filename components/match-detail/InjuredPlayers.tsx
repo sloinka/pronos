@@ -38,16 +38,16 @@ export default function InjuredPlayers({
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-text-light/50 text-xs">
-                  {injury.player_info.reason}
+                  {injury.player.reason}
                 </span>
                 <span
                   className={`badge badge-xs ${
-                    injury.player_info.type === "Missing Fixture"
+                    injury.player.type === "Missing Fixture"
                       ? "badge-error"
                       : "badge-warning"
                   }`}
                 >
-                  {injury.player_info.type === "Missing Fixture"
+                  {injury.player.type === "Missing Fixture"
                     ? t("out")
                     : t("doubtful")}
                 </span>

@@ -89,7 +89,7 @@ export default async function MatchDetailPage({
       .map((i) => i.player.name)
       .join(", ") || "None";
 
-    preview = "test" || await generateAIPreview({
+    preview = await generateAIPreview({
       homeTeam: match.teams.home.name,
       awayTeam: match.teams.away.name,
       league: match.league.name,

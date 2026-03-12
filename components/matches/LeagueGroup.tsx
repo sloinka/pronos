@@ -30,6 +30,8 @@ export default function LeagueGroup({
           className="w-6 h-6"
         />
         <h2 className="font-semibold text-text-light/90 text-sm">
+          <span className="text-text-light/50">{countryName}</span>
+          <span className="text-text-light/30 mx-1">·</span>
           {leagueName}
         </h2>
       </div>

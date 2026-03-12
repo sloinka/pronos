@@ -15,10 +15,15 @@
   },
   "matches": {
     "title": "Σημερινοί αγώνες",
+    "upcomingMatches": "Επερχόμενοι αγώνες",
     "noMatches": "Δεν υπάρχουν προγραμματισμένοι αγώνες σήμερα",
+    "noUpcomingMatches": "Δεν υπάρχουν επερχόμενοι αγώνες",
     "subscribeToUnlock": "Εγγραφείτε για να ξεκλειδώσετε όλους τους αγώνες",
     "kickoff": "Σέντρα",
-    "vs": "vs"
+    "vs": "vs",
+    "showing": "Εμφάνιση {count} από {total}",
+    "loadMore": "Φόρτωση περισσότερων",
+    "page": "Σελίδα"
   },
   "matchDetail": {
     "matchPreview": "Προεπισκόπηση αγώνα",

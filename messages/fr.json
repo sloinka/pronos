@@ -15,10 +15,15 @@
   },
   "matches": {
     "title": "Matchs du jour",
+    "upcomingMatches": "Matchs à venir",
     "noMatches": "Aucun match prévu aujourd'hui",
+    "noUpcomingMatches": "Aucun match à venir",
     "subscribeToUnlock": "Abonnez-vous pour débloquer tous les matchs",
     "kickoff": "Coup d'envoi",
-    "vs": "vs"
+    "vs": "vs",
+    "showing": "{count} sur {total} affichés",
+    "loadMore": "Charger plus",
+    "page": "Page"
   },
   "matchDetail": {
     "matchPreview": "Aperçu du match",

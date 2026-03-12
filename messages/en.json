@@ -15,10 +15,15 @@
   },
   "matches": {
     "title": "Today's Matches",
+    "upcomingMatches": "Upcoming Matches",
     "noMatches": "No matches scheduled for today",
+    "noUpcomingMatches": "No upcoming matches",
     "subscribeToUnlock": "Subscribe to unlock all matches",
     "kickoff": "Kickoff",
-    "vs": "vs"
+    "vs": "vs",
+    "showing": "Showing {count} of {total}",
+    "loadMore": "Load More",
+    "page": "Page"
   },
   "matchDetail": {
     "matchPreview": "Match Preview",

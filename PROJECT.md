@@ -4,7 +4,7 @@ football prediction platform. Here are the complete specifications:
 ---
 
 ## 🏗️ TECH STACK
-- **Framework:** Next.js 15 (App Router)
+- **Framework:** Next.js 16 (App Router)
 - **Styling:** TailwindCSS + DaisyUI
 - **Database:** PostgreSQL (via Prisma ORM)
 - **Cache:** Redis (via ioredis)

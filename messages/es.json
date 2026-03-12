@@ -15,10 +15,15 @@
   },
   "matches": {
     "title": "Partidos de hoy",
+    "upcomingMatches": "Próximos partidos",
     "noMatches": "No hay partidos programados para hoy",
+    "noUpcomingMatches": "No hay próximos partidos",
     "subscribeToUnlock": "Suscríbete para desbloquear todos los partidos",
     "kickoff": "Inicio",
-    "vs": "vs"
+    "vs": "vs",
+    "showing": "Mostrando {count} de {total}",
+    "loadMore": "Cargar más",
+    "page": "Página"
   },
   "matchDetail": {
     "matchPreview": "Vista previa del partido",

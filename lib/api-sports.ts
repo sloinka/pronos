@@ -57,14 +57,10 @@ export interface Fixture {
 }
 
 export interface Injury {
-  player: { id: number; name: string; photo: string };
+  player: { id: number; name: string; photo: string; type: string; reason: string };
   team: { id: number; name: string; logo: string };
   fixture: { id: number };
   league: { id: number };
-  player_info: {
-    type: string;
-    reason: string;
-  };
 }
 
 export interface Standing {
@@ -80,6 +76,44 @@ export interface Standing {
 const EXCLUDED_STATUSES = ["FT", "AET", "PEN", "ABD", "CANC", "AWD", "WO"];
 const ALLOWED_STATUSES = ["NS", "TBD", "PST"];
 
+// Major leagues allow-list (API-Sports IDs)
+const MAJOR_LEAGUE_IDS = new Set([
+  // International Clubs
+  2,   // Champions League
+  3,   // Europa League
+  848, // Conference League
+  // Europe - Top 5
+  39,  // Premier League (England)
+  40,  // Championship (England)
+  140, // La Liga (Spain)
+  78,  // Bundesliga (Germany)
+  135, // Serie A (Italy)
+  61,  // Ligue 1 (France)
+  // Europe - Other
+  203, // Süper Lig (Turkey)
+  88,  // Eredivisie (Netherlands)
+  94,  // Primeira Liga (Portugal)
+  144, // Pro League (Belgium)
+  207, // Super League (Switzerland)
+  179, // Premiership (Scotland)
+  218, // Bundesliga (Austria)
+  119, // Superliga (Denmark)
+  103, // Eliteserien (Norway)
+  113, // Allsvenskan (Sweden)
+  106, // Ekstraklasa (Poland)
+  197, // Super League 1 (Greece)
+  // Americas
+  253, // MLS (USA)
+  262, // Liga MX (Mexico)
+  71,  // Serie A (Brazil)
+  13,  // Copa Libertadores
+  11,  // Copa Sudamericana
+  // International
+  1,   // World Cup
+  4,   // Euro Championship
+  5,   // Nations League
+]);
+
 export async function getDailyMatches(date: string): Promise<Fixture[]> {
   const cacheKey = `matches:date:${date}`;
   const fixtures = await apiFetch<Fixture[]>(
@@ -90,8 +124,31 @@ export async function getDailyMatches(date: string): Promise<Fixture[]> {
   return fixtures.filter(
     (f) =>
       !EXCLUDED_STATUSES.includes(f.fixture.status.short) &&
-      ALLOWED_STATUSES.includes(f.fixture.status.short)
+      ALLOWED_STATUSES.includes(f.fixture.status.short) &&
+      MAJOR_LEAGUE_IDS.has(f.league.id)
   );
+}
+
+export async function getMultiDayMatches(
+  startDate: string,
+  days: number
+): Promise<{ date: string; matches: Fixture[] }[]> {
+  const dates: string[] = [];
+  const start = new Date(startDate + "T00:00:00Z");
+  for (let i = 0; i < days; i++) {
+    const d = new Date(start);
+    d.setUTCDate(d.getUTCDate() + i);
+    dates.push(d.toISOString().split("T")[0]);
+  }
+
+  const results = await Promise.all(
+    dates.map(async (date) => ({
+      date,
+      matches: await getDailyMatches(date),
+    }))
+  );
+
+  return results;
 }
 
 export async function getMatchDetails(fixtureId: number): Promise<Fixture> {

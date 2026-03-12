@@ -28,6 +28,29 @@ export default function MatchCard({
         </div>
       )}
       <div className="card-body p-4">
+        {/* League badge */}
+        <div className="flex items-center gap-2 mb-2">
+          {match.league.flag && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={match.league.flag}
+              alt={match.league.country}
+              className="w-4 h-auto rounded-sm"
+            />
+          )}
+          <Image
+            src={match.league.logo}
+            alt={match.league.name}
+            width={16}
+            height={16}
+            className="w-4 h-4"
+          />
+          <span className="text-xs text-text-light/50 truncate">
+            {match.league.country} · {match.league.name}
+          </span>
+        </div>
+
+        {/* Teams and time */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3 flex-1">
             <Image
