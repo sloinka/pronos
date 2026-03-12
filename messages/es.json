@@ -11,7 +11,13 @@
     "signOut": "Cerrar sesión",
     "home": "Inicio",
     "pricing": "Precios",
-    "language": "Idioma"
+    "language": "Idioma",
+    "subscribeText": "Suscribirse"
+  },
+  "hero": {
+    "title": "Predicciones de fútbol impulsadas por IA",
+    "subtitle": "Simula cualquier partido con inteligencia artificial avanzada y análisis de datos históricos.",
+    "todayLabel": "Hoy"
   },
   "matches": {
     "title": "Partidos de hoy",
@@ -23,7 +29,14 @@
     "vs": "vs",
     "showing": "Mostrando {count} de {total}",
     "loadMore": "Cargar más",
-    "page": "Página"
+    "page": "Página",
+    "unlockAllPredictions": "Desbloquea todas las predicciones de IA",
+    "unlimitedAccess": "Obtén el 100% de acceso a más de 2500 partidos al mes en todas las ligas.",
+    "subscribeNow": "Suscríbete ahora",
+    "proMatch": "Partido PRO",
+    "free": "Gratis",
+    "matchDetailLabel": "Detalles del partido",
+    "aiAnalysis": "Análisis de IA"
   },
   "matchDetail": {
     "matchPreview": "Vista previa del partido",
@@ -45,7 +58,8 @@
     "aiPreview": "Vista previa IA del partido",
     "simulate": "Simular este partido",
     "premiumOnly": "Solo suscriptores premium",
-    "round": "Jornada"
+    "round": "Jornada",
+    "tacticalAnalysis": "Análisis Táctico"
   },
   "simulation": {
     "title": "Simulación IA del partido",

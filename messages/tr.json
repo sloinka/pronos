@@ -11,7 +11,13 @@
     "signOut": "Çıkış Yap",
     "home": "Ana Sayfa",
     "pricing": "Fiyatlandırma",
-    "language": "Dil"
+    "language": "Dil",
+    "subscribeText": "Abone Ol"
+  },
+  "hero": {
+    "title": "AI Destekli Futbol Tahminleri",
+    "subtitle": "Gelişmiş yapay zeka ve geçmiş veri analizi ile herhangi bir maçı simüle edin.",
+    "todayLabel": "Bugün"
   },
   "matches": {
     "title": "Bugünün Maçları",
@@ -23,7 +29,14 @@
     "vs": "vs",
     "showing": "{total} maçtan {count} tanesi gösteriliyor",
     "loadMore": "Daha Fazla Yükle",
-    "page": "Sayfa"
+    "page": "Sayfa",
+    "unlockAllPredictions": "Tüm AI tahminlerini aç",
+    "unlimitedAccess": "Tüm liglerde ayda 2.500+ maça %100 erişim sağlayın.",
+    "subscribeNow": "Şimdi Abone Ol",
+    "proMatch": "PRO Maç",
+    "free": "Ücretsiz",
+    "matchDetailLabel": "Maç Detayı",
+    "aiAnalysis": "AI Analizi"
   },
   "matchDetail": {
     "matchPreview": "Maç Önizleme",
@@ -45,7 +58,8 @@
     "aiPreview": "AI Maç Önizleme",
     "simulate": "Bu Maçı Simüle Et",
     "premiumOnly": "Sadece premium aboneler",
-    "round": "Hafta"
+    "round": "Hafta",
+    "tacticalAnalysis": "Taktiksel Analiz"
   },
   "simulation": {
     "title": "AI Maç Simülasyonu",

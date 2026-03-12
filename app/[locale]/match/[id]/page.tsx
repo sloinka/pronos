@@ -1,8 +1,14 @@
-import { getMatchDetails, getTeamForm, getH2H, getInjuries } from "@/lib/api-sports";
+import {
+  getMatchDetails,
+  getTeamForm,
+  getH2H,
+  getInjuries,
+} from "@/lib/api-sports";
 import { getCached, setCache, CACHE_TTL } from "@/lib/redis";
 import { generateAIPreview } from "@/lib/claude";
 import { auth } from "@/lib/auth";
 import { isUserSubscribed } from "@/lib/subscription";
+import { Link } from "@/i18n/routing";
 import MatchHeader from "@/components/match-detail/MatchHeader";
 import TeamForm from "@/components/match-detail/TeamForm";
 import H2HStats from "@/components/match-detail/H2HStats";
@@ -54,6 +60,8 @@ export default async function MatchDetailPage({
     getInjuries(fixtureId),
   ]);
 
+  console.log(homeForm);
+
   let subscribed = false;
   if (session?.user?.id) {
     subscribed = await isUserSubscribed(session.user.id);
@@ -79,15 +87,17 @@ export default async function MatchDetailPage({
       else awayWins++;
     }
 
-    const homeInjuryNames = injuries
-      .filter((i) => i.team.id === match.teams.home.id)
-      .map((i) => i.player.name)
-      .join(", ") || "None";
+    const homeInjuryNames =
+      injuries
+        .filter((i) => i.team.id === match.teams.home.id)
+        .map((i) => i.player.name)
+        .join(", ") || "None";
 
-    const awayInjuryNames = injuries
-      .filter((i) => i.team.id !== match.teams.home.id)
-      .map((i) => i.player.name)
-      .join(", ") || "None";
+    const awayInjuryNames =
+      injuries
+        .filter((i) => i.team.id !== match.teams.home.id)
+        .map((i) => i.player.name)
+        .join(", ") || "None";
 
     preview = await generateAIPreview({
       homeTeam: match.teams.home.name,
@@ -109,38 +119,54 @@ export default async function MatchDetailPage({
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
-      <MatchHeader match={match} />
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <TeamForm
-          teamName={match.teams.home.name}
-          teamId={match.teams.home.id}
-          matches={homeForm}
-        />
-        <TeamForm
-          teamName={match.teams.away.name}
-          teamId={match.teams.away.id}
-          matches={awayForm}
-        />
+    <main className="max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 flex flex-col gap-6">
+      <div className="flex flex-wrap items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+        <Link href="/" className="hover:text-primary">
+          Home
+        </Link>
+        <span className="material-symbols-outlined text-xs">chevron_right</span>
+        <span className="hover:text-primary cursor-default">
+          {match.league.name}
+        </span>
+        <span className="material-symbols-outlined text-xs">chevron_right</span>
+        <span className="text-slate-900 dark:text-white font-medium">
+          Match
+        </span>
       </div>
 
-      <H2HStats
-        homeTeam={match.teams.home.name}
-        awayTeam={match.teams.away.name}
-        homeTeamId={match.teams.home.id}
-        awayTeamId={match.teams.away.id}
-        matches={h2h}
-      />
+      <MatchHeader match={match} />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <TeamForm
+          team1Name={match.teams.home.name}
+          team1Matches={homeForm}
+          team2Name={match.teams.away.name}
+          team2Matches={awayForm}
+          team1Id={match.teams.home.id}
+          team2Id={match.teams.away.id}
+        />
+
+        <H2HStats
+          homeTeam={match.teams.home.name}
+          awayTeam={match.teams.away.name}
+          homeTeamId={match.teams.home.id}
+          awayTeamId={match.teams.away.id}
+          matches={h2h}
+        />
+      </div>
 
       <InjuredPlayers
         injuries={injuries}
         homeTeamId={match.teams.home.id}
+        homeTeamName={match.teams.home.name}
+        homeTeamLogo={match.teams.home.logo}
+        awayTeamName={match.teams.away.name}
+        awayTeamLogo={match.teams.away.logo}
       />
 
       <AIPreview preview={preview} />
 
       <SimulationModal fixtureId={fixtureId} isSubscribed={subscribed} />
-    </div>
+    </main>
   );
 }

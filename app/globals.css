@@ -2,12 +2,20 @@
 @plugin "daisyui";
 
 @theme inline {
-  --color-primary: #00DC82;
+  --color-primary: #00db80;
   --color-secondary: #6366f1;
-  --color-bg-dark: #0f172a;
+  --color-bg-light: #f5f8f7;
+  --color-bg-dark: #0a0f1d;
+  --color-background-dark: #0a0f1d;
   --color-surface: #1e293b;
   --color-text-light: #f1f5f9;
   --font-sans: "Inter", sans-serif;
+  --font-display: "Inter", sans-serif;
+}
+
+.glass-overlay {
+  background: rgba(15, 35, 27, 0.7);
+  backdrop-filter: blur(4px);
 }
 
 :root {

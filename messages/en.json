@@ -11,7 +11,13 @@
     "signOut": "Sign Out",
     "home": "Home",
     "pricing": "Pricing",
-    "language": "Language"
+    "language": "Language",
+    "subscribeText": "Subscribe"
+  },
+  "hero": {
+    "title": "AI-Powered Football Predictions",
+    "subtitle": "Simulate any match with advanced artificial intelligence and historical data analysis.",
+    "todayLabel": "Today"
   },
   "matches": {
     "title": "Today's Matches",
@@ -23,7 +29,14 @@
     "vs": "vs",
     "showing": "Showing {count} of {total}",
     "loadMore": "Load More",
-    "page": "Page"
+    "page": "Page",
+    "unlockAllPredictions": "Unlock all AI predictions",
+    "unlimitedAccess": "Get 100% access to 2,500+ matches per month across all leagues.",
+    "subscribeNow": "Subscribe Now",
+    "proMatch": "PRO Match",
+    "free": "Free",
+    "matchDetailLabel": "Match Detail",
+    "aiAnalysis": "AI Analysis"
   },
   "matchDetail": {
     "matchPreview": "Match Preview",
@@ -45,7 +58,8 @@
     "aiPreview": "AI Match Preview",
     "simulate": "Simulate This Match",
     "premiumOnly": "Premium subscribers only",
-    "round": "Round"
+    "round": "Round",
+    "tacticalAnalysis": "Tactical Analysis"
   },
   "simulation": {
     "title": "AI Match Simulation",
