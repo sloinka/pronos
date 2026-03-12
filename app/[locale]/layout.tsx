@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { SessionProvider } from "next-auth/react";
 import Navbar from "@/components/ui/Navbar";
-import SubscriptionBanner from "@/components/ui/SubscriptionBanner";
 
 import { auth } from "@/lib/auth";
 import { isUserSubscribed } from "@/lib/subscription";
@@ -45,7 +44,6 @@ export default async function LocaleLayout({
           <NextIntlClientProvider locale={locale} messages={messages}>
             <Navbar />
             {children}
-            {!subscribed && <SubscriptionBanner />}
           </NextIntlClientProvider>
         </SessionProvider>
       </body>

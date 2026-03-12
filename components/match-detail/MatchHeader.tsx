@@ -1,9 +1,25 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { getTranslations, getLocale } from "next-intl/server";
 import type { Fixture } from "@/lib/api-sports";
 
-export default function MatchHeader({ match }: { match: Fixture }) {
-  const t = useTranslations("matchDetail");
+export default async function MatchHeader({ match }: { match: Fixture }) {
+  const [t, locale] = await Promise.all([
+    getTranslations("matchDetail"),
+    getLocale()
+  ]);
+
+  const dateObj = new Date(match.fixture.date);
+  
+  const formattedDate = new Intl.DateTimeFormat(locale, {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(dateObj);
+
+  const formattedTime = new Intl.DateTimeFormat(locale, {
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(dateObj);
 
   return (
     <section className="relative overflow-hidden rounded-xl bg-slate-100 dark:bg-primary/5 border border-slate-200 dark:border-primary/20 p-6 md:p-10">
@@ -35,17 +51,10 @@ export default function MatchHeader({ match }: { match: Fixture }) {
           </span>
           <div className="text-center">
             <p className="text-sm font-bold dark:text-white">
-              {new Date(match.fixture.date).toLocaleDateString(undefined, {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })}
+              {formattedDate}
             </p>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              {new Date(match.fixture.date).toLocaleTimeString(undefined, {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
+              {formattedTime}
             </p>
             <p className="mt-2 text-xs font-medium text-primary">
               {t("round")} {match.league.round}

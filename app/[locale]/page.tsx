@@ -1,11 +1,16 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { getMultiDayMatches } from "@/lib/api-sports";
 import { auth } from "@/lib/auth";
 import { isUserSubscribed } from "@/lib/subscription";
 import MatchList from "@/components/matches/MatchList";
+import SubscriptionBanner from "@/components/ui/SubscriptionBanner";
 
 export default async function HomePage() {
-  const t = await getTranslations("hero");
+  const [t, locale] = await Promise.all([
+    getTranslations("hero"),
+    getLocale()
+  ]);
+  
   const today = new Date().toISOString().split("T")[0];
   const dayResults = await getMultiDayMatches(today, 4);
 
@@ -28,6 +33,12 @@ export default async function HomePage() {
   const totalMatches = allMatches.length;
   const totalPages = Math.ceil(totalMatches / pageSize);
 
+  const formattedDate = new Intl.DateTimeFormat(locale, { 
+    month: 'long', 
+    day: 'numeric', 
+    year: 'numeric' 
+  }).format(new Date());
+
   return (
     <main className="max-w-4xl mx-auto px-4 py-8 space-y-8">
       {/* Slim Hero Section */}
@@ -38,7 +49,7 @@ export default async function HomePage() {
         <div className="relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-bold mb-4">
             <span className="material-symbols-outlined text-sm">calendar_today</span>
-            <span>{t("todayLabel")}, {new Date().toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+            <span>{t("todayLabel")}, {formattedDate}</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-black text-white mb-2 leading-tight">{t("title")}</h1>
           <p className="text-slate-400 text-base max-w-lg mx-auto">
@@ -55,6 +66,8 @@ export default async function HomePage() {
           startDate={today}
         />
       </div>
+
+      {!subscribed && <SubscriptionBanner />}
     </main>
   );
 }

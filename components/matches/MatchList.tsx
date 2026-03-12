@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useTransition } from "react";
-import { useTranslations } from "next-intl";
+import { useState, useTransition, useEffect } from "react";
+import { useTranslations, useLocale, useFormatter } from "next-intl";
 import LeagueGroup from "./LeagueGroup";
 import type { Fixture } from "@/lib/api-sports";
 
@@ -21,7 +21,12 @@ interface MatchListProps {
   startDate: string;
 }
 
-function getDayLabel(dateStr: string, todayStr: string, t: ReturnType<typeof useTranslations>) {
+function getDayLabel(
+  dateStr: string,
+  todayStr: string,
+  t: ReturnType<typeof useTranslations>,
+  format: ReturnType<typeof useFormatter>
+) {
   const today = new Date(todayStr + "T00:00:00Z");
   const date = new Date(dateStr + "T00:00:00Z");
   const diffDays = Math.round(
@@ -31,11 +36,11 @@ function getDayLabel(dateStr: string, todayStr: string, t: ReturnType<typeof use
   if (diffDays === 0) return t("today");
   if (diffDays === 1) return t("tomorrow");
 
-  return new Intl.DateTimeFormat(undefined, {
+  return format.dateTime(date, {
     weekday: "long",
     month: "long",
     day: "numeric",
-  }).format(date);
+  });
 }
 
 export default function MatchList({
@@ -46,11 +51,22 @@ export default function MatchList({
 }: MatchListProps) {
   const t = useTranslations("matches");
   const tCommon = useTranslations("common");
+  const format = useFormatter();
+  const locale = useLocale();
+
   const [matches, setMatches] = useState<FixtureWithDate[]>(initialMatches);
   const [currentPage, setCurrentPage] = useState(pagination.page);
-  const [totalPages] = useState(pagination.totalPages);
-  const [totalMatches] = useState(pagination.totalMatches);
+  const [totalPages, setTotalPages] = useState(pagination.totalPages);
+  const [totalMatches, setTotalMatches] = useState(pagination.totalMatches);
   const [isPending, startTransition] = useTransition();
+
+  // Sync state with props when initial data changes
+  useEffect(() => {
+    setMatches(initialMatches);
+    setCurrentPage(pagination.page);
+    setTotalPages(pagination.totalPages);
+    setTotalMatches(pagination.totalMatches);
+  }, [initialMatches, pagination]);
 
   if (matches.length === 0 && currentPage === 1) {
     return (
@@ -116,6 +132,13 @@ export default function MatchList({
         const data = await res.json();
         setMatches(data.matches);
         setCurrentPage(page);
+
+        // If API provides updated pagination, update it
+        if (data.pagination) {
+          setTotalPages(data.pagination.totalPages);
+          setTotalMatches(data.pagination.totalMatches);
+        }
+
         window.scrollTo({ top: 0, behavior: "smooth" });
       } catch (error) {
         console.error("Failed to fetch page:", error);
@@ -145,7 +168,7 @@ export default function MatchList({
   }
 
   return (
-    <div>
+    <div className="pb-24">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold">{t("upcomingMatches")}</h1>
         {totalMatches > 0 && (
@@ -163,7 +186,7 @@ export default function MatchList({
           <div className="flex items-center gap-3 mb-4">
             <div className="h-px flex-1 bg-white/10" />
             <h2 className="text-lg font-semibold text-primary whitespace-nowrap">
-              {getDayLabel(dateKey, startDate, tCommon)}
+              {getDayLabel(dateKey, startDate, tCommon, format)}
             </h2>
             <div className="h-px flex-1 bg-white/10" />
           </div>
@@ -210,11 +233,10 @@ export default function MatchList({
             ) : (
               <button
                 key={p}
-                className={`btn btn-sm ${
-                  p === currentPage
-                    ? "btn-primary"
-                    : "btn-ghost"
-                }`}
+                className={`btn btn-sm ${p === currentPage
+                  ? "btn-primary"
+                  : "btn-ghost"
+                  }`}
                 disabled={isPending}
                 onClick={() => goToPage(p as number)}
               >

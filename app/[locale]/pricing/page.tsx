@@ -102,11 +102,10 @@ function PricingContent() {
           {plans.map((plan, idx) => (idx === 0 || idx === 1 || idx === 2) && (
             <div
               key={plan.key}
-              className={`relative flex flex-col p-8 rounded-[2rem] transition-all duration-500 hover:translate-y-[-4px] border ${
-                plan.highlighted
-                  ? "bg-[#021610] border-[#00f59b] scale-105 z-10 shadow-[0_0_30px_rgba(0,245,155,0.15)]"
-                  : "bg-[#0a201c]/40 border-white/5 hover:border-white/20"
-              }`}
+              className={`relative flex flex-col p-8 rounded-[2rem] transition-all duration-500 hover:translate-y-[-4px] border ${plan.highlighted
+                ? "bg-[#021610] border-[#00f59b] scale-105 z-10 shadow-[0_0_30px_rgba(0,245,155,0.15)]"
+                : "bg-[#0a201c]/40 border-white/5 hover:border-white/20"
+                }`}
               style={{ animationDelay: `${idx * 150}ms` }}
             >
               {plan.highlighted && (
@@ -120,7 +119,7 @@ function PricingContent() {
                   {t("savePercentage", { percentage: plan.savePercentage })}
                 </div>
               )}
-              
+
               <div className="mb-8">
                 <h2 className="text-xl font-bold text-white mb-6 uppercase tracking-wider">{t(plan.key)}</h2>
                 <div className="flex items-baseline gap-1">
@@ -140,11 +139,10 @@ function PricingContent() {
                 <button
                   onClick={() => handleCheckout(plan.key)}
                   disabled={loading === plan.key}
-                  className={`w-full py-4 rounded-xl font-black text-sm uppercase tracking-widest transition-all active:scale-[0.98] ${
-                    plan.highlighted
-                      ? "bg-[#00f59b] text-[#021610] hover:bg-[#00e08b] hover:shadow-[0_0_20px_rgba(0,245,155,0.4)]"
-                      : "bg-[#00f59b] text-[#021610] hover:bg-[#00e08b]"
-                  } disabled:opacity-50`}
+                  className={`w-full py-4 rounded-xl font-black text-sm uppercase tracking-widest transition-all active:scale-[0.98] ${plan.highlighted
+                    ? "bg-[#00f59b] text-[#021610] hover:bg-[#00e08b] hover:shadow-[0_0_20px_rgba(0,245,155,0.4)]"
+                    : "bg-[#00f59b] text-[#021610] hover:bg-[#00e08b]"
+                    } disabled:opacity-50`}
                 >
                   {loading === plan.key ? (
                     <span className="flex items-center justify-center gap-2">
@@ -182,25 +180,18 @@ function PricingContent() {
             <span className="text-sm font-medium">{t("securePayment")}</span>
           </div>
           <p className="text-slate-500 text-[13px]">{t("cancelAnytime")}</p>
-          
+
           <div className="flex items-center gap-4 py-4 grayscale opacity-40">
             <div className="px-4 py-2 bg-white/5 rounded-lg border border-white/10">
-              <span className="material-symbols-outlined text-2xl">credit_card</span>
+              <span className="material-symbols-outlined text-2xl mt-2">credit_card</span>
             </div>
             <div className="px-4 py-2 bg-white/5 rounded-lg border border-white/10">
-              <span className="material-symbols-outlined text-2xl">payments</span>
+              <span className="material-symbols-outlined text-2xl mt-2">payments</span>
             </div>
             <div className="px-4 py-2 bg-white/5 rounded-lg border border-white/10">
-              <span className="material-symbols-outlined text-2xl">account_balance_wallet</span>
+              <span className="material-symbols-outlined text-2xl mt-2">account_balance_wallet</span>
             </div>
           </div>
-        </div>
-
-        {/* Global Footer */}
-        <div className="mt-32 pt-12 border-t border-white/5 text-center">
-          <p className="text-slate-500 text-sm font-medium">
-            {t("footer", { year: new Date().getFullYear() })}
-          </p>
         </div>
       </div>
     </main>
