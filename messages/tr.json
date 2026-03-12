@@ -100,23 +100,29 @@
     "invalidCredentials": "Geçersiz e-posta veya şifre"
   },
   "pricing": {
-    "title": "Planınızı Seçin",
-    "subtitle": "Tüm maçları ve AI destekli tahminleri açın",
+    "title": "Tüm Tahminlerin Kilidini Açın",
+    "subtitle": "Planınızı seçin ve AI destekli analizler ve gerçek zamanlı verilerle daha akıllıca kazanmaya başlayın.",
     "weekly": "Haftalık",
     "monthly": "Aylık",
     "yearly": "Yıllık",
-    "bestValue": "En İyi Değer — %42 Tasarruf",
+    "mostPopular": "EN POPÜLER",
+    "savePercentage": "%{percentage} Tasarruf",
+    "advantageMonthly": "Haftalık plana göre %35 daha avantajlı",
+    "advantageYearly": "Aylık plana göre %42 daha avantajlı",
     "currentPlan": "Mevcut Plan",
-    "choosePlan": "Planı Seç",
+    "choosePlan": "Hemen Başla",
     "features": {
       "allMatches": "Tüm maçlar açık",
-      "fullDetails": "Detaylı maç bilgileri",
-      "aiPreviews": "AI maç önizlemeleri",
-      "aiSimulations": "AI maç simülasyonları",
+      "fullDetails": "Detaylı bilgiler",
+      "aiPreviews": "AI önizlemeleri",
+      "aiSimulations": "AI simülasyonları",
       "unlimited": "Sınırsız tahminler"
     },
     "perWeek": "/hafta",
     "perMonth": "/ay",
-    "perYear": "/yıl"
+    "perYear": "/yıl",
+    "securePayment": "Stripe ile güvenli ödeme",
+    "cancelAnytime": "İstediğiniz zaman iptal edin. Gizli ücret yok.",
+    "footer": "© {year} Pronos.io - Akıllı spor tahminlerini güçlendirir."
   }
 }

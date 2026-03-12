@@ -9,22 +9,25 @@ import { Link } from "@/i18n/routing";
 const plans = [
   {
     key: "weekly" as const,
-    price: 4.99,
+    price: "4.99",
     intervalKey: "perWeek" as const,
     icon: "calendar_view_week",
   },
   {
     key: "monthly" as const,
-    price: 12.99,
+    price: "12.99",
     intervalKey: "perMonth" as const,
     icon: "calendar_month",
+    highlighted: true,
+    advantageKey: "advantageMonthly",
   },
   {
     key: "yearly" as const,
-    price: 89.99,
+    price: "89.99",
     intervalKey: "perYear" as const,
-    highlighted: true,
     icon: "workspace_premium",
+    savePercentage: 42,
+    advantageKey: "advantageYearly",
   },
 ];
 
@@ -82,92 +85,123 @@ function PricingContent() {
   }
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-      <div className="text-center space-y-4 mb-16">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-bold uppercase tracking-widest">
-          <span className="material-symbols-outlined text-sm">payments</span>
-          Pricing Options
+    <main className="min-h-screen bg-[#021610] text-white selection:bg-[#00f59b] selection:text-[#021610]">
+      <div className="max-w-6xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center space-y-6 mb-20 animate-in fade-in slide-in-from-top-4 duration-700">
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white">
+            {t("title")}
+          </h1>
+          <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto font-medium">
+            {t("subtitle")}
+          </p>
         </div>
-        <h1 className="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
-          Choose Your <span className="text-primary italic">Strategy</span>
-        </h1>
-        <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-          {t("subtitle")}
-        </p>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {plans.map((plan) => (
-          <div
-            key={plan.key}
-            className={`relative flex flex-col p-8 rounded-2xl transition-all duration-300 ${
-              plan.highlighted
-                ? "bg-slate-900 text-white ring-4 ring-primary ring-opacity-50 transform scale-105 z-10"
-                : "bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-primary/10"
-            }`}
-          >
-            {plan.highlighted && (
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-slate-900 px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">
-                {t("bestValue")}
-              </div>
-            )}
-            
-            <div className="mb-8">
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 ${
-                plan.highlighted ? "bg-primary text-slate-900" : "bg-primary/10 text-primary"
-              }`}>
-                <span className="material-symbols-outlined">{plan.icon}</span>
-              </div>
-              <h2 className="text-2xl font-black">{t(plan.key)}</h2>
-              <div className="mt-4 flex items-baseline gap-1">
-                <span className={`text-5xl font-black ${plan.highlighted ? "text-white" : "text-slate-900 dark:text-white"}`}>
-                  ${plan.price}
-                </span>
-                <span className="text-slate-500 text-sm">{t(plan.intervalKey)}</span>
-              </div>
-            </div>
-
-            <ul className="flex-1 space-y-4 mb-10">
-              {featureKeys.map((fk) => (
-                <li key={fk} className="flex items-start gap-3">
-                  <span className={`material-symbols-outlined text-sm mt-0.5 ${
-                    plan.highlighted ? "text-primary" : "text-primary"
-                  }`}>
-                    check_circle
-                  </span>
-                  <span className={`text-sm ${plan.highlighted ? "text-slate-300" : "text-slate-600 dark:text-slate-400"}`}>
-                    {t(`features.${fk}`)}
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            <button
-              onClick={() => handleCheckout(plan.key)}
-              disabled={loading === plan.key}
-              className={`w-full py-4 rounded-xl font-black text-sm uppercase tracking-widest transition-all active:scale-95 ${
+        {/* Pricing Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          {plans.map((plan, idx) => (idx === 0 || idx === 1 || idx === 2) && (
+            <div
+              key={plan.key}
+              className={`relative flex flex-col p-8 rounded-[2rem] transition-all duration-500 hover:translate-y-[-4px] border ${
                 plan.highlighted
-                  ? "bg-primary text-slate-900 hover:bg-primary/90 shadow-xl shadow-primary/20"
-                  : "bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:opacity-90 shadow-lg"
-              } disabled:opacity-50`}
+                  ? "bg-[#021610] border-[#00f59b] scale-105 z-10 shadow-[0_0_30px_rgba(0,245,155,0.15)]"
+                  : "bg-[#0a201c]/40 border-white/5 hover:border-white/20"
+              }`}
+              style={{ animationDelay: `${idx * 150}ms` }}
             >
-              {loading === plan.key ? (
-                <span className="flex items-center justify-center gap-2">
-                  <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
-                  Processing...
-                </span>
-              ) : (
-                t("choosePlan")
+              {plan.highlighted && (
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#00f59b] text-[#021610] px-6 py-1.5 rounded-full text-xs font-black uppercase tracking-widest shadow-[0_0_20px_rgba(0,245,155,0.3)]">
+                  {t("mostPopular")}
+                </div>
               )}
-            </button>
-          </div>
-        ))}
-      </div>
 
-      <div className="mt-20 text-center">
-        <p className="text-slate-500 text-sm">
-          All plans include 24/7 AI-generated stats updates.
-        </p>
+              {plan.savePercentage && (
+                <div className="absolute top-8 right-8 bg-[#f59e0b]/20 text-[#f59e0b] px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider border border-[#f59e0b]/30">
+                  {t("savePercentage", { percentage: plan.savePercentage })}
+                </div>
+              )}
+              
+              <div className="mb-8">
+                <h2 className="text-xl font-bold text-white mb-6 uppercase tracking-wider">{t(plan.key)}</h2>
+                <div className="flex items-baseline gap-1">
+                  <span className="text-5xl font-black text-white">
+                    ${plan.price}
+                  </span>
+                  <span className="text-slate-400 text-sm font-medium">{t(plan.intervalKey)}</span>
+                </div>
+                {plan.advantageKey && (
+                  <p className="mt-3 text-xs font-bold text-[#00f59b] antialiased">
+                    {t(plan.advantageKey)}
+                  </p>
+                )}
+              </div>
+
+              <div className="mb-8 p-0.5">
+                <button
+                  onClick={() => handleCheckout(plan.key)}
+                  disabled={loading === plan.key}
+                  className={`w-full py-4 rounded-xl font-black text-sm uppercase tracking-widest transition-all active:scale-[0.98] ${
+                    plan.highlighted
+                      ? "bg-[#00f59b] text-[#021610] hover:bg-[#00e08b] hover:shadow-[0_0_20px_rgba(0,245,155,0.4)]"
+                      : "bg-[#00f59b] text-[#021610] hover:bg-[#00e08b]"
+                  } disabled:opacity-50`}
+                >
+                  {loading === plan.key ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <div className="w-4 h-4 border-2 border-[#021610] border-t-transparent rounded-full animate-spin"></div>
+                      {t("choosePlan")}...
+                    </span>
+                  ) : (
+                    t("choosePlan")
+                  )}
+                </button>
+              </div>
+
+              <ul className="flex-1 space-y-4 mb-2">
+                {featureKeys.map((fk) => (
+                  <li key={fk} className="flex items-center gap-3">
+                    <div className="shrink-0 w-5 h-5 rounded-full bg-[#00f59b] flex items-center justify-center">
+                      <span className="material-symbols-outlined text-[14px] font-black text-[#021610]">
+                        check
+                      </span>
+                    </div>
+                    <span className="text-sm font-medium text-white">
+                      {t(`features.${fk}`)}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Payment Methods Footer */}
+        <div className="mt-24 flex flex-col items-center gap-6 animate-in fade-in duration-1000 delay-500">
+          <div className="flex items-center gap-2 text-slate-400">
+            <span className="material-symbols-outlined text-xl">lock</span>
+            <span className="text-sm font-medium">{t("securePayment")}</span>
+          </div>
+          <p className="text-slate-500 text-[13px]">{t("cancelAnytime")}</p>
+          
+          <div className="flex items-center gap-4 py-4 grayscale opacity-40">
+            <div className="px-4 py-2 bg-white/5 rounded-lg border border-white/10">
+              <span className="material-symbols-outlined text-2xl">credit_card</span>
+            </div>
+            <div className="px-4 py-2 bg-white/5 rounded-lg border border-white/10">
+              <span className="material-symbols-outlined text-2xl">payments</span>
+            </div>
+            <div className="px-4 py-2 bg-white/5 rounded-lg border border-white/10">
+              <span className="material-symbols-outlined text-2xl">account_balance_wallet</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Global Footer */}
+        <div className="mt-32 pt-12 border-t border-white/5 text-center">
+          <p className="text-slate-500 text-sm font-medium">
+            {t("footer", { year: new Date().getFullYear() })}
+          </p>
+        </div>
       </div>
     </main>
   );
@@ -175,7 +209,7 @@ function PricingContent() {
 
 export default function PricingPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+    <Suspense fallback={<div className="min-h-screen bg-[#021610] flex items-center justify-center text-[#00f59b]">Loading...</div>}>
       <PricingContent />
     </Suspense>
   );

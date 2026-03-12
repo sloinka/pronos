@@ -100,23 +100,29 @@
     "invalidCredentials": "E-mail ou mot de passe invalide"
   },
   "pricing": {
-    "title": "Choisissez votre plan",
-    "subtitle": "Débloquez tous les matchs et les prédictions IA",
+    "title": "Débloquez toutes les prédictions",
+    "subtitle": "Choisissez votre plan et commencez à gagner plus intelligemment avec des analyses IA et des données en temps réel.",
     "weekly": "Hebdomadaire",
     "monthly": "Mensuel",
     "yearly": "Annuel",
-    "bestValue": "Meilleur rapport — Économisez 42%",
+    "mostPopular": "LE PLUS POPULAIRE",
+    "savePercentage": "Économisez {percentage}%",
+    "advantageMonthly": "35% plus avantageux que l'hebdomadaire",
+    "advantageYearly": "42% plus avantageux que le mensuel",
     "currentPlan": "Plan actuel",
-    "choosePlan": "Choisir ce plan",
+    "choosePlan": "Commencer maintenant",
     "features": {
       "allMatches": "Tous les matchs débloqués",
-      "fullDetails": "Détails complets des matchs",
-      "aiPreviews": "Aperçus IA des matchs",
-      "aiSimulations": "Simulations IA des matchs",
+      "fullDetails": "Détails complets",
+      "aiPreviews": "Aperçus IA",
+      "aiSimulations": "Simulations IA",
       "unlimited": "Prédictions illimitées"
     },
     "perWeek": "/semaine",
     "perMonth": "/mois",
-    "perYear": "/an"
+    "perYear": "/an",
+    "securePayment": "Paiement sécurisé via Stripe",
+    "cancelAnytime": "Annulez à tout moment. Pas de frais cachés.",
+    "footer": "© {year} Pronos.io - Propulser les pronostics sportifs intelligents."
   }
 }

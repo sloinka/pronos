@@ -100,23 +100,29 @@
     "invalidCredentials": "Invalid email or password"
   },
   "pricing": {
-    "title": "Choose Your Plan",
-    "subtitle": "Unlock all matches and AI-powered predictions",
+    "title": "Unlock Full Predictions",
+    "subtitle": "Choose your plan and start winning smarter with AI-powered analytics and real-time insights.",
     "weekly": "Weekly",
     "monthly": "Monthly",
     "yearly": "Yearly",
-    "bestValue": "Best Value — Save 42%",
+    "mostPopular": "MOST POPULAR",
+    "savePercentage": "Save {percentage}%",
+    "advantageMonthly": "35% more advantageous than weekly",
+    "advantageYearly": "42% more advantageous than monthly",
     "currentPlan": "Current Plan",
-    "choosePlan": "Choose Plan",
+    "choosePlan": "Get Started",
     "features": {
       "allMatches": "All matches unlocked",
-      "fullDetails": "Full match details",
-      "aiPreviews": "AI match previews",
-      "aiSimulations": "AI match simulations",
+      "fullDetails": "Full details",
+      "aiPreviews": "AI previews",
+      "aiSimulations": "AI simulations",
       "unlimited": "Unlimited predictions"
     },
     "perWeek": "/week",
     "perMonth": "/month",
-    "perYear": "/year"
+    "perYear": "/year",
+    "securePayment": "Secure payment via Stripe",
+    "cancelAnytime": "Cancel anytime. No hidden fees.",
+    "footer": "© {year} Pronos.io - Empowering smart sports predictions."
   }
 }

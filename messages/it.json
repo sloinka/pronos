@@ -100,23 +100,29 @@
     "invalidCredentials": "Email o password non validi"
   },
   "pricing": {
-    "title": "Scegli il tuo piano",
-    "subtitle": "Sblocca tutte le partite e le previsioni IA",
+    "title": "Sblocca le previsioni complete",
+    "subtitle": "Scegli il tuo piano e inizia a vincere in modo più intelligente con l'analisi IA e i dati in tempo reale.",
     "weekly": "Settimanale",
     "monthly": "Mensile",
     "yearly": "Annuale",
-    "bestValue": "Miglior valore — Risparmia il 42%",
+    "mostPopular": "IL PIÙ POPOLARE",
+    "savePercentage": "Risparmia il {percentage}%",
+    "advantageMonthly": "35% più vantaggioso rispetto al settimanale",
+    "advantageYearly": "42% più vantaggioso rispetto al mensile",
     "currentPlan": "Piano attuale",
-    "choosePlan": "Scegli piano",
+    "choosePlan": "Inizia ora",
     "features": {
       "allMatches": "Tutte le partite sbloccate",
-      "fullDetails": "Dettagli completi delle partite",
-      "aiPreviews": "Anteprime IA delle partite",
-      "aiSimulations": "Simulazioni IA delle partite",
+      "fullDetails": "Dettagli completi",
+      "aiPreviews": "Anteprime IA",
+      "aiSimulations": "Simulazioni IA",
       "unlimited": "Previsioni illimitate"
     },
     "perWeek": "/settimana",
     "perMonth": "/mese",
-    "perYear": "/anno"
+    "perYear": "/anno",
+    "securePayment": "Pagamento sicuro tramite Stripe",
+    "cancelAnytime": "Annulla in qualsiasi momento. Nessun costo nascosto.",
+    "footer": "© {year} Pronos.io - Potenziare i pronostici sportivi intelligenti."
   }
 }
